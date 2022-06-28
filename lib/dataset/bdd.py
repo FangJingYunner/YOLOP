@@ -53,7 +53,7 @@ class BddDataset(AutoDriveDataset):
                     if single_cls:
                          cls_id=0
                     gt[idx][0] = cls_id
-                    box = convert((width, height), (x1, x2, y1, y2))
+                    box = convert((width, height), (x1, x2, y1, y2))#缩放标签到[0,1]之间
                     gt[idx][1:] = list(box)
                 
 

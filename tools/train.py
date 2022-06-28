@@ -269,7 +269,7 @@ def main():
     )
     train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset) if rank != -1 else None
 
-    train_loader = DataLoaderX(
+    train_loader = DataLoaderX(#数据后台预先读取下一batch，让训练速度加快
         train_dataset,
         batch_size=cfg.TRAIN.BATCH_SIZE_PER_GPU * len(cfg.GPUS),
         shuffle=(cfg.TRAIN.SHUFFLE & rank == -1),
@@ -313,7 +313,7 @@ def main():
 
     # training
     num_warmup = max(round(cfg.TRAIN.WARMUP_EPOCHS * num_batch), 1000)
-    scaler = amp.GradScaler(enabled=device.type != 'cpu')
+    scaler = amp.GradScaler(enabled=device.type != 'cpu')#使用混合精度训练
     print('=> start training...')
     for epoch in range(begin_epoch+1, cfg.TRAIN.END_EPOCH+1):
         if rank != -1:

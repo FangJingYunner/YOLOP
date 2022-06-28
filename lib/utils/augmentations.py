@@ -171,6 +171,7 @@ def cutout(combination, labels):
 def letterbox(combination, new_shape=(640, 640), color=(114, 114, 114), auto=True, scaleFill=False, scaleup=True):
     """Resize the input image and automatically padding to suitable shape :https://zhuanlan.zhihu.com/p/172121380"""
     # Resize image to a 32-pixel-multiple rectangle https://github.com/ultralytics/yolov3/issues/232
+    # 扩充图像大小为32的倍数，为了在推理的时候减小推理时间,如果大小不是new_shape则先缩放到new_shape
     img, gray, line = combination
     shape = img.shape[:2]  # current shape [height, width]
     if isinstance(new_shape, int):

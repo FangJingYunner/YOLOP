@@ -125,7 +125,7 @@ def initialize_weights(model):
             m.momentum = 0.03
         elif t in [nn.Hardswish, nn.LeakyReLU, nn.ReLU, nn.ReLU6]:
         # elif t in [nn.LeakyReLU, nn.ReLU, nn.ReLU6]:
-            m.inplace = True
+            m.inplace = True #将计算得到的值直接覆盖之前的值
 
 
 def xyxy2xywh(x):

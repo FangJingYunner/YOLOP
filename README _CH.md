@@ -153,7 +153,6 @@
 │ │ ├─datapre    # Generation of gt(mask) for drivable area segmentation task
 ├─weights    # Pretraining model
 ```
-
 ---
 
 ### Requirement

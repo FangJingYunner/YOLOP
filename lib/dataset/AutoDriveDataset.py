@@ -29,7 +29,7 @@ class AutoDriveDataset(Dataset):
         """
         self.is_train = is_train
         self.cfg = cfg
-        self.transform = transform
+        self.transform = transform#totensor 然后normalize
         self.inputsize = inputsize
         self.Tensor = transforms.ToTensor()
         img_root = Path(cfg.DATASET.DATAROOT)
@@ -129,7 +129,7 @@ class AutoDriveDataset(Dataset):
         labels=[]
         
         if det_label.size > 0:
-            # Normalized xywh to pixel xyxy format
+            # Normalized xywh to pixel xyxy format for augmentation
             labels = det_label.copy()
             labels[:, 1] = ratio[0] * w * (det_label[:, 1] - det_label[:, 3] / 2) + pad[0]  # pad width
             labels[:, 2] = ratio[1] * h * (det_label[:, 2] - det_label[:, 4] / 2) + pad[1]  # pad height
@@ -192,7 +192,7 @@ class AutoDriveDataset(Dataset):
         # Convert
         # img = img[:, :, ::-1].transpose(2, 0, 1)  # BGR to RGB, to 3x416x416
         # img = img.transpose(2, 0, 1)
-        img = np.ascontiguousarray(img)
+        img = np.ascontiguousarray(img)#把图像改成内存连续的，让其运行速度加快
         # seg_label = np.ascontiguousarray(seg_label)
         # if idx == 0:
         #     print(seg_label[:,:,0])

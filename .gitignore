@@ -10,7 +10,3 @@ inference/
 *.pt
 *.tar
 *.tar.gz
-toolkits/deploy/cmake-build-debug/
-tools/runs/
-toolkits/deploy/build/
-*.pyc
